@@ -1,0 +1,11 @@
+
+.mytbody{
+	display:block;
+	height:200px;
+	overflow-y:scroll;
+}
+
+.myscroller{
+	
+	max-height:500px;
+}

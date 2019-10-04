@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Busay Homeowners Association</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<link rel="stylesheet" href="assets/css/w3.css"/>
+		<script type="text/javascript" src="assets/js/webcam2.min.js"></script>
+		<style>
+		#my_camera{
+		 width: 320px;
+		 height: 240px;
+		 border: 1px solid black;
+		}
+		</style>
+	</head>
+	<body bgcolor="#c0c0c0">
+		<div class="w3-bar w3-white">
+			<img src="assets/img/bhoa_small.png" width="150px">
+		</div>
+		<div class="w3-bar w3-green w3-padding">BHOA Membership</div>
+		<br>
+		<div class="w3-row w3-container">
+			&nbsp;
+			<div class=" w3-half w3-container w3-animate-left" >
+				<div class="w3-white w3-card-4 ">
+				<div class="w3-bar w3-green w3-padding">REGISTRATION</div>
+				<form method="post" class="w3-container">
+					<br>
+					<center>
+						<div id="my_camera" ></div>
+					<br>
+					<!--<input type=button value="Configure" onClick="configure()">-->
+					<input class='w3-button w3-green' type='button' value="Take Snapshot" onClick="take_snapshot()">
+					<input class='w3-button w3-green' type='button' value="Save Snapshot" onClick="saveSnap()">
+					
+					</center>
+					<br>
+					<label><b>LASTNAME</b></label>
+					<input type="text" name="lastname" class="w3-input w3-border" id="lastname">
+					<label><b>FIRSTNAME</b></label>
+					<input type="text" name="firstname" class="w3-input w3-border" id="firstname">
+					<label><b>REPRESENTATIVE OF</b></label>
+					<input type="text" class="w3-input w3-border" id="rep_of"><br>
+					
+				</form>
+				</div>
+				<br>
+			</div>
+			&nbsp;
+			<div class="w3-half w3-container w3-animate-right">
+				<div class="w3-card-4 w3-white">
+					<div class="w3-green w3-green w3-padding">MEMBER INFORMATION</div>
+					<br>
+					<center>
+						<div class="w3-image" id="results" ></div>
+					</center>
+					<div class="w3-container">
+						<label><b>FAMILYNAME</b></label>
+						<div class="w3-text" id="lbllastname"></div>
+					</div>
+					<div class="w3-container">
+						<label><b>FIRSTNAME</b></label>
+						<div class="w3-text" id="lblfirstname"></div>
+					</div>
+					<div class="w3-container">
+						<label><b>REPRESENTATIVE OF</b></label>
+						<div class="w3-text" id="lblrepof"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="assets/js/mycam.js"></script>
+</html>

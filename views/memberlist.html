@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+	<head>
+		<title>1223-B BUSAY HOMEOWNERS ASSOCIATION</title>
+		<link rel="stylesheet" href="assets/css/w3.css"/>
+		<script src="assets/js/angular.min.js"></script>
+	</head>
+	<body ng-app="app" ng-controller="ctrl">
+		<div class="w3-white w3-row">
+			<img src="assets/img/bhoa_small.png" width="150px">
+			
+			<div class="w3-bar w3-green">&nbsp;</div>
+		</div>
+		<div class="w3-row">
+			<br>
+			<div class="w3-container">
+				<input type="text" class="w3-padding w3-right" placeholder="Search..." ng-model="search">
+			</div>
+			<br>
+			<table class="w3-table-all">
+				<tr>
+					<th ng-repeat="h in header" >{{ h }}</th>
+				</tr>
+				<tr ng-repeat="m in members | filter:search | orderBy:'lastname'">
+					<td>{{ $index+1}}</td>
+					<td>BHOA-000{{ m.id }}</td>
+					<td>{{ m.lastname+', '+m.firstname}}</td>
+					<td>
+						<button class="w3-button w3-amber" ng-click="showmember(members.indexOf(m))">&#9998;</button>
+						<a class="w3-button w3-blue" href="card.php?id=BHOA-00{{ m.id }}&name={{ m.lastname+','+m.firstname}}&image={{m.image}}">&#128438;</a>
+						<a class="w3-button w3-red" ng-click="deactivate(members.indexOf(m))">&times;</a>
+						<a class="w3-button w3-light-green" href="cert.php?id=BHOA-00{{ m.id }}&name={{ m.firstname+' '+m.lastname}}&repof={{m.repof}}">&#128462;</a>
+						
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="w3-modal" id="member_modal">
+			<div class="w3-modal-content w3-animate-top" style='width:40%'>
+				<div class="w3-container w3-green">
+					<h3>MEMBER</h3>
+					<button class="w3-button w3-display-topright" ng-click="closemodal()">&times;</button>
+				</div>
+				<div class="w3-container w3-white">
+					<br>
+					<center>
+						<img ng-src="{{ image }}">
+					</center>
+					<br>
+					<label><b>LASTNAME</b></label>
+					<input type='text' class='w3-input w3-border' ng-model='lastname'>
+					<label><b>FIRSTNAME</b></label>
+					<input type='text' class='w3-input w3-border' ng-model='firstname'>
+					<label><b>REPRESENTATIVE OF</b></label>
+					<input type='text' class='w3-input w3-border' ng-model='repof'>
+					<br>
+					<button class='w3-button w3-blue w3-right'>SAVE</button>
+					<br><br>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script>
+		(function(){
+			
+			var app=angular.module('app',[]);
+			app.controller('ctrl',function($http,$scope){
+				$scope.header=['#','MEMBER ID','NAME','ACTION'];
+				
+				$scope.closemodal=function(){
+					document.getElementById('member_modal').style.display='none';
+				}
+				
+				$scope.deactivate=function(index){
+					var member=$scope.members[index];
+					var name=member.lastname+','+member.firstname;
+					var ok=confirm("Deactivate Member : "+name);
+					if(ok)
+						window.open('../controller/deactivate.php?id='+member.id);
+				}
+				
+				
+				$scope.showmember=function(index){
+					document.getElementById('member_modal').style.display='block';
+					var member=$scope.members[index];
+					$scope.lastname=member.lastname;
+					$scope.firstname=member.firstname;
+					$scope.repof=member.repof;
+					$scope.image='../upload/'+member.image;
+				}
+				///
+				
+				$http({
+					url:'../controller/getallactive.php',
+					method:'GET'
+				}).then(function(response){
+					$scope.members = response.data;
+				});
+			});
+		})()
+		
+	</script>
+</html>

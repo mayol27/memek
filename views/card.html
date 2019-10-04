@@ -1,0 +1,62 @@
+<?php
+	if(isset($_GET['id']) && isset($_GET['name'])){
+		$id=$_GET['id'];
+		$name=$_GET['name'];
+	
+?>
+<!doctype html>
+<html>
+	<head>
+		<title>1223-B Busay Homeowners Association</title>
+		<link rel="stylesheet" href="assets/css/w3.css" />
+		<script src="assets/qrcode/jquery.js"></script>
+		<script src="assets/qrcode/qrcode.js"></script>
+		<script src="assets/qrcode/qrcode.min.js"></script>
+		<style>
+			.mybar{
+				background-color:green;
+				padding:5px;
+				background-repeat:repeat
+			}
+		</style>
+	</head>
+	<body>
+		<div class="w3-card-2" style="width:40%;height:50%">
+			<img src="assets/img/bhoa_small.png" width="100px">
+			<table width='100%'>
+				<tr><td background='assets/img/bar.png'>&nbsp;</td></tr>
+			</table>
+			<div class="w3-container">
+				<br>
+				<center>
+					<img src="../upload/DURANO,DENNIS.jpeg" width="150px">
+					<h3>DURANO, DENNIS</h3>
+					<div id="qrcode"></div>
+					<script type="text/javascript">
+						var qrcode = new QRCode(document.getElementById("qrcode"), {
+							text: "BHOA-0012",
+							width: 90,
+							height: 90,
+							colorDark : "#000000",
+							colorLight : "#ffffff",
+							correctLevel : QRCode.CorrectLevel.H
+						});
+					</script>
+					Bonafide member of LOT 1223-B Busay Homeowners Association
+					<br><br>
+					___________________<br>
+					 Member Signature
+				
+				
+				</center>
+				
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		
+	</script>
+</html>
+<?php
+	}
+?>
